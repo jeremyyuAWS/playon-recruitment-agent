@@ -1,0 +1,68 @@
+name: linkedin-recruiter
+description: >
+  Integrates with LinkedIn Recruiter Seat API for direct sourcing. Sends InMails,
+  manages projects, views candidate profiles, and tracks engagement metrics.
+input_schema:
+  type: object
+  properties:
+    action:
+      type: string
+      enum:
+        - search_profiles
+        - view_profile
+        - send_inmail
+        - create_project
+        - add_to_project
+        - get_inmail_analytics
+        - get_project_candidates
+        - check_inmail_credits
+      description: LinkedIn Recruiter operation
+    search_query:
+      type: object
+      properties:
+        keywords:
+          type: string
+        title:
+          type: string
+        location:
+          type: string
+        current_company:
+          type: string
+        skills:
+          type: array
+          items:
+            type: string
+        years_experience:
+          type: object
+          properties:
+            min:
+              type: integer
+            max:
+              type: integer
+        boolean_string:
+          type: string
+          description: Raw boolean search string for advanced queries
+      description: Profile search parameters
+    profile_id:
+      type: string
+      description: LinkedIn profile ID or URL
+    inmail:
+      type: object
+      properties:
+        recipient_profile_id:
+          type: string
+        subject:
+          type: string
+        body:
+          type: string
+        template_id:
+          type: string
+      description: InMail details
+    project_id:
+      type: string
+      description: LinkedIn Recruiter project ID
+    project_name:
+      type: string
+      description: Name for new project (typically matches job requisition)
+  required:
+    - action

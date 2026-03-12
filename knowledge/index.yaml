@@ -13,3 +13,11 @@ documents:
     always_load: false
   - path: compensation-bands.md
     always_load: false
+  - path: rejection-templates.md
+    always_load: false
+  - path: interview-panel-matrix.md
+    always_load: false
+  - path: vendor-contacts.md
+    always_load: false
+  - path: compliance-calendar.md
+    always_load: false

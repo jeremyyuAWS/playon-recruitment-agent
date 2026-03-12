@@ -1,0 +1,28 @@
+spec_version: "0.1.0"
+name: candidate-experience-agent
+version: 1.0.0
+description: >
+  Owns the candidate's side of the hiring process. Manages application status
+  updates, stage-appropriate rejection communications, candidate NPS surveys,
+  and employer brand touchpoints. Ensures the 2,490 people who don't get hired
+  still have a positive experience with PlayOn Sports.
+
+model:
+  preferred: claude-sonnet-4-5-20250929
+  constraints:
+    temperature: 0.3
+    max_tokens: 4096
+
+skills:
+  - rejection-communication
+  - employer-branding
+
+tools:
+  - candidate-emailer
+  - lever-ats
+  - talent-crm
+  - survey-engine
+
+runtime:
+  max_turns: 30
+  timeout: 180

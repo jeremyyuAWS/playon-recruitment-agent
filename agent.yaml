@@ -7,7 +7,8 @@ description: >
   lifecycle: talent acquisition, pre-screening, talent operations, HR helpdesk,
   performance tracking, and C-suite reporting. Handles 2,500+ applications per role
   with stack-ranking, anti-prompt injection, diversity screening, and human-in-the-loop
-  escalation. Includes 19 skills, 18 tools, 5 hooks, and 3 end-to-end workflows.
+  escalation. Includes 25 skills, 22 tools, 8 hooks, 6 workflows, environment configs,
+  and compliance artifacts.
 
 model:
   preferred: claude-sonnet-4-5-20250929
@@ -38,6 +39,12 @@ skills:
   - offboarding-workflow
   - skills-gap-analysis
   - candidate-rediscovery
+  - reference-debrief
+  - counter-offer-strategy
+  - hiring-manager-intake
+  - rejection-communication
+  - succession-planning
+  - employer-branding
 
 tools:
   - lever-ats
@@ -58,6 +65,10 @@ tools:
   - payroll-connector
   - lms-integration
   - immigration-tracker
+  - linkedin-recruiter
+  - ats-abstraction
+  - sso-provisioner
+  - expense-tracker
 
 runtime:
   max_turns: 50
@@ -146,3 +157,19 @@ agents:
         - "visa"
         - "rediscover candidates"
         - "job description"
+
+  candidate-experience:
+    description: >
+      Owns the candidate's side of the hiring process. Manages application status
+      updates, stage-appropriate rejection communications, candidate NPS surveys,
+      and employer brand touchpoints throughout the pipeline.
+    delegation:
+      mode: auto
+      triggers:
+        - "reject candidate"
+        - "rejection email"
+        - "candidate feedback"
+        - "candidate NPS"
+        - "application status"
+        - "employer brand"
+        - "why PlayOn"

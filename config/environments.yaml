@@ -1,0 +1,136 @@
+# Environment Configuration
+# Switch between environments for development, demo, and production use.
+
+environments:
+  production:
+    description: Live environment connected to real systems
+    ats:
+      provider: lever
+      api_url: https://api.lever.co/v1
+      api_key_env: LEVER_API_KEY
+    hris:
+      provider: bamboohr
+      api_url: https://api.bamboohr.com/api/gateway.php
+      api_key_env: BAMBOOHR_API_KEY
+    email:
+      provider: sendgrid
+      api_key_env: SENDGRID_API_KEY
+      from_address: recruiting@playonsports.com
+    calendar:
+      provider: google
+      credentials_env: GOOGLE_CALENDAR_CREDENTIALS
+    docusign:
+      api_url: https://na4.docusign.net/restapi
+      api_key_env: DOCUSIGN_API_KEY
+    slack:
+      workspace: playon-sports
+      bot_token_env: SLACK_BOT_TOKEN
+      channels:
+        hiring_updates: "#hiring-updates"
+        hiring_alerts: "#hiring-alerts"
+        new_hires: "#new-hires"
+        celebrations: "#celebrations"
+    linkedin:
+      api_key_env: LINKEDIN_RECRUITER_API_KEY
+    payroll:
+      provider: adp
+      api_key_env: ADP_API_KEY
+    background_check:
+      provider: checkr
+      api_key_env: CHECKR_API_KEY
+    assessment:
+      provider: hackerrank
+      api_key_env: HACKERRANK_API_KEY
+    ai_caller:
+      provider: bland
+      api_key_env: BLAND_API_KEY
+
+  sandbox:
+    description: >
+      Sandbox environment for demos and testing. Uses mock APIs that return
+      realistic data without touching real systems. Safe for March 24 demo.
+    ats:
+      provider: lever
+      api_url: https://sandbox.lever.co/v1
+      api_key_env: LEVER_SANDBOX_API_KEY
+      mock_mode: true
+      mock_data:
+        applications_per_role: 50
+        roles_open: 5
+    hris:
+      provider: bamboohr
+      api_url: https://api.bamboohr.com/api/gateway.php
+      api_key_env: BAMBOOHR_SANDBOX_KEY
+      mock_mode: true
+      mock_data:
+        total_employees: 175
+        departments: [Engineering, Product, Sales, Operations, Marketing]
+    email:
+      provider: sendgrid
+      api_key_env: SENDGRID_SANDBOX_KEY
+      sandbox_mode: true
+      redirect_all_to: demo-inbox@playonsports.com
+    calendar:
+      mock_mode: true
+      mock_data:
+        available_slots_per_day: 4
+    docusign:
+      api_url: https://demo.docusign.net/restapi
+      api_key_env: DOCUSIGN_SANDBOX_KEY
+    slack:
+      workspace: playon-demo
+      bot_token_env: SLACK_SANDBOX_TOKEN
+      channels:
+        hiring_updates: "#demo-hiring"
+        hiring_alerts: "#demo-alerts"
+        new_hires: "#demo-hires"
+        celebrations: "#demo-celebrations"
+    linkedin:
+      mock_mode: true
+    payroll:
+      mock_mode: true
+    background_check:
+      mock_mode: true
+      mock_data:
+        default_result: clear
+        turnaround_days: 0
+    assessment:
+      mock_mode: true
+      mock_data:
+        default_score: 78
+    ai_caller:
+      mock_mode: true
+
+  development:
+    description: Local development environment with full mocking
+    ats:
+      provider: lever
+      mock_mode: true
+      mock_data:
+        applications_per_role: 10
+        roles_open: 2
+    hris:
+      mock_mode: true
+    email:
+      mock_mode: true
+      log_only: true
+    calendar:
+      mock_mode: true
+    docusign:
+      mock_mode: true
+    slack:
+      mock_mode: true
+      log_only: true
+    linkedin:
+      mock_mode: true
+    payroll:
+      mock_mode: true
+    background_check:
+      mock_mode: true
+    assessment:
+      mock_mode: true
+    ai_caller:
+      mock_mode: true
+
+# Active environment — change this to switch contexts
+active_environment: sandbox

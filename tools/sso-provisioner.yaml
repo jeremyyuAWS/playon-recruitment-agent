@@ -1,0 +1,59 @@
+name: sso-provisioner
+description: >
+  Integrates with Okta/Azure AD for identity and access management. Provisions
+  Day 1 access for new hires and revokes access for departing employees.
+input_schema:
+  type: object
+  properties:
+    action:
+      type: string
+      enum:
+        - provision_user
+        - deprovision_user
+        - assign_groups
+        - remove_groups
+        - get_user_access
+        - audit_access
+        - suspend_user
+        - reactivate_user
+      description: SSO/IAM operation
+    provider:
+      type: string
+      enum:
+        - okta
+        - azure_ad
+        - google_workspace
+      description: Identity provider
+    employee_email:
+      type: string
+      description: Employee email address
+    employee_data:
+      type: object
+      properties:
+        first_name:
+          type: string
+        last_name:
+          type: string
+        department:
+          type: string
+        title:
+          type: string
+        manager_email:
+          type: string
+        start_date:
+          type: string
+          format: date
+      description: New user data for provisioning
+    groups:
+      type: array
+      items:
+        type: string
+      description: Security/application groups to assign
+    role_template:
+      type: string
+      description: Pre-defined access template by role (e.g., "engineer", "sales", "manager")
+    reason:
+      type: string
+      description: Reason for access change (for audit trail)
+  required:
+    - action

@@ -1,0 +1,75 @@
+name: expense-tracker
+description: >
+  Tracks recruiting spend across all channels — job board costs, agency fees,
+  referral bonuses, event sponsorships, and tool subscriptions. Feeds into
+  cost-per-hire analytics.
+input_schema:
+  type: object
+  properties:
+    action:
+      type: string
+      enum:
+        - log_expense
+        - get_spend_by_role
+        - get_spend_by_channel
+        - get_spend_by_period
+        - get_cost_per_hire
+        - get_budget_status
+        - forecast_spend
+        - get_roi_by_channel
+      description: Expense tracking operation
+    expense:
+      type: object
+      properties:
+        category:
+          type: string
+          enum:
+            - job_board_posting
+            - job_board_sponsored
+            - agency_fee
+            - referral_bonus
+            - event_sponsorship
+            - tool_subscription
+            - travel
+            - relocation
+            - sign_on_bonus
+            - background_check
+            - assessment_platform
+          description: Expense category
+        amount:
+          type: number
+          description: Amount in USD
+        vendor:
+          type: string
+          description: Vendor or platform name
+        job_id:
+          type: string
+          description: Associated job requisition ID
+        date:
+          type: string
+          format: date
+        notes:
+          type: string
+      description: Expense record to log
+    date_range:
+      type: object
+      properties:
+        start:
+          type: string
+          format: date
+        end:
+          type: string
+          format: date
+      description: Date range for queries
+    department:
+      type: string
+      description: Department filter
+    budget_period:
+      type: string
+      enum:
+        - monthly
+        - quarterly
+        - annual
+      description: Budget period for status check
+  required:
+    - action

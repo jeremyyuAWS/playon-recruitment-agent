@@ -1,0 +1,63 @@
+name: ats-abstraction
+description: >
+  ATS abstraction layer supporting Lever, Greenhouse, and Workable. Provides a
+  unified API so the agent system works regardless of which ATS is in use.
+  Currently configured for Lever with adapter pattern for future migration.
+input_schema:
+  type: object
+  properties:
+    action:
+      type: string
+      enum:
+        - pull_applications
+        - pull_job_description
+        - push_rankings
+        - update_candidate_status
+        - pull_hiring_manager_notes
+        - create_candidate
+        - move_pipeline_stage
+        - add_note
+        - get_pipeline_summary
+        - search_candidates
+        - get_rejection_reasons
+        - archive_candidate
+      description: ATS operation (adapter translates to provider-specific API)
+    provider:
+      type: string
+      enum:
+        - lever
+        - greenhouse
+        - workable
+      description: ATS provider (default from config)
+    job_id:
+      type: string
+      description: Job/requisition ID
+    candidate_id:
+      type: string
+      description: Candidate ID
+    stage:
+      type: string
+      description: Pipeline stage to move candidate to
+    note:
+      type: object
+      properties:
+        content:
+          type: string
+        visibility:
+          type: string
+          enum: [public, private]
+      description: Note to add to candidate record
+    search_query:
+      type: string
+      description: Search term for candidate lookup
+    rankings:
+      type: array
+      description: Candidate rankings to push
+    status:
+      type: string
+      description: Candidate status update
+    rejection_reason:
+      type: string
+      description: Reason for archiving/rejecting
+  required:
+    - action
