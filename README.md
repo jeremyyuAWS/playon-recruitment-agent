@@ -5,7 +5,7 @@ Multi-agent recruitment management system for PlayOn Sports. A managerial agent 
 ## Run
 
 ```bash
-npx @open-gitagent/gitagent run -r https://github.com/<username>/playon-recruitment-agent
+npx @open-gitagent/gitagent run -r https://github.com/jeremyyuAWS/playon-recruitment-agent
 ```
 
 ## What It Can Do
