@@ -1,0 +1,42 @@
+name: docusign-integration
+description: >
+  Sends offer letters and employment documents via DocuSign for electronic signature.
+  Tracks signature status and sends reminders.
+input_schema:
+  type: object
+  properties:
+    action:
+      type: string
+      enum:
+        - send_envelope
+        - check_status
+        - send_reminder
+        - void_envelope
+        - download_signed
+      description: DocuSign operation
+    document_type:
+      type: string
+      enum:
+        - offer_letter
+        - nda
+        - i9_form
+        - benefits_enrollment
+        - policy_acknowledgment
+      description: Type of document to send
+    recipient_email:
+      type: string
+      description: Signer email address
+    recipient_name:
+      type: string
+      description: Signer full name
+    envelope_id:
+      type: string
+      description: Existing envelope ID for status/reminder/void
+    template_id:
+      type: string
+      description: DocuSign template ID
+    template_vars:
+      type: object
+      description: Variables to populate in the document template
+  required:
+    - action

@@ -1,0 +1,39 @@
+name: job-board-poster
+description: >
+  Posts and manages job listings across multiple job boards (Indeed, LinkedIn,
+  Glassdoor, BuiltIn). Syncs status with Lever ATS.
+input_schema:
+  type: object
+  properties:
+    action:
+      type: string
+      enum:
+        - post_job
+        - update_listing
+        - close_listing
+        - get_performance
+        - sync_applications
+      description: Job board operation
+    job_id:
+      type: string
+      description: Lever job ID to post
+    boards:
+      type: array
+      items:
+        type: string
+        enum:
+          - indeed
+          - linkedin
+          - glassdoor
+          - builtin
+          - dice
+          - angellist
+      description: Target job boards
+    listing_id:
+      type: string
+      description: Existing listing ID for updates/close
+    sponsored:
+      type: boolean
+      description: Whether to use sponsored/promoted listing
+  required:
+    - action

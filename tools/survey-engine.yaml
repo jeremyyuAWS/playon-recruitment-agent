@@ -1,0 +1,55 @@
+name: survey-engine
+description: >
+  Creates and distributes employee surveys (pulse, satisfaction, exit interviews).
+  Collects responses anonymously and aggregates results.
+input_schema:
+  type: object
+  properties:
+    action:
+      type: string
+      enum:
+        - create_survey
+        - send_survey
+        - collect_responses
+        - get_results
+        - close_survey
+      description: Survey operation
+    survey_type:
+      type: string
+      enum:
+        - pulse
+        - satisfaction
+        - exit_interview
+        - onboarding_feedback
+        - manager_360
+      description: Type of survey
+    recipients:
+      type: string
+      enum:
+        - all_employees
+        - department
+        - team
+        - individual
+      description: Distribution scope
+    department:
+      type: string
+      description: Department name (when recipients=department)
+    questions:
+      type: array
+      items:
+        type: object
+        properties:
+          text:
+            type: string
+          type:
+            type: string
+            enum: [rating_1_10, rating_1_5, multiple_choice, free_text]
+      description: Survey questions
+    survey_id:
+      type: string
+      description: Existing survey ID for results/close
+    anonymous:
+      type: boolean
+      description: Whether responses are anonymous (default true)
+  required:
+    - action

@@ -1,0 +1,38 @@
+name: background-check
+description: >
+  Initiates and tracks background check requests through third-party providers.
+  Supports criminal, education, employment verification, and drug screening.
+input_schema:
+  type: object
+  properties:
+    action:
+      type: string
+      enum:
+        - initiate_check
+        - check_status
+        - get_results
+        - cancel_check
+      description: Background check operation
+    candidate_id:
+      type: string
+      description: Lever candidate ID
+    check_type:
+      type: array
+      items:
+        type: string
+        enum:
+          - criminal
+          - education
+          - employment
+          - drug_screen
+          - credit
+          - reference
+      description: Types of checks to run
+    candidate_email:
+      type: string
+      description: Candidate email for consent forms
+    check_id:
+      type: string
+      description: Existing check ID for status/results queries
+  required:
+    - action

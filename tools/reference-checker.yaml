@@ -1,0 +1,43 @@
+name: reference-checker
+description: >
+  Automates reference check outreach and collection. Sends structured questionnaires
+  to candidate-provided references and aggregates responses.
+input_schema:
+  type: object
+  properties:
+    action:
+      type: string
+      enum:
+        - send_reference_request
+        - check_status
+        - get_responses
+        - send_reminder
+      description: Reference check operation
+    candidate_id:
+      type: string
+      description: Lever candidate ID
+    candidate_name:
+      type: string
+      description: Candidate full name
+    references:
+      type: array
+      items:
+        type: object
+        properties:
+          name:
+            type: string
+          email:
+            type: string
+          relationship:
+            type: string
+          company:
+            type: string
+      description: List of references to contact
+    role_title:
+      type: string
+      description: Role the candidate is being considered for
+    reference_check_id:
+      type: string
+      description: Existing reference check ID
+  required:
+    - action

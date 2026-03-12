@@ -21,11 +21,26 @@ skills:
   - stack-ranking
   - anti-prompt-injection
   - calendar-scheduling
+  - diversity-screening
+  - compensation-benchmarking
+  - offer-generation
+  - candidate-sourcing
+  - onboarding-workflow
+  - interview-feedback
+  - employee-sentiment
+  - compliance-reporting
 
 tools:
   - lever-ats
   - candidate-emailer
   - calendar-booker
+  - background-check
+  - docusign-integration
+  - slack-notifier
+  - survey-engine
+  - analytics-dashboard
+  - reference-checker
+  - job-board-poster
 
 runtime:
   max_turns: 50

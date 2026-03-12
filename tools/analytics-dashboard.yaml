@@ -1,0 +1,53 @@
+name: analytics-dashboard
+description: >
+  Queries hiring and workforce analytics data for reporting. Provides metrics
+  like time-to-fill, cost-per-hire, attrition rates, and pipeline health.
+input_schema:
+  type: object
+  properties:
+    action:
+      type: string
+      enum:
+        - get_pipeline_metrics
+        - get_hiring_velocity
+        - get_attrition_data
+        - get_source_effectiveness
+        - get_diversity_metrics
+        - get_cost_per_hire
+        - get_time_to_fill
+        - get_offer_acceptance_rate
+        - get_department_headcount
+        - get_custom_report
+      description: Analytics query type
+    date_range:
+      type: object
+      properties:
+        start:
+          type: string
+          format: date
+        end:
+          type: string
+          format: date
+      description: Date range for the query
+    department:
+      type: string
+      description: Filter by department (optional)
+    role_id:
+      type: string
+      description: Filter by specific role/requisition
+    comparison_period:
+      type: string
+      enum:
+        - previous_quarter
+        - previous_year
+        - same_quarter_last_year
+      description: Period for trend comparison
+    format:
+      type: string
+      enum:
+        - summary
+        - detailed
+        - csv
+      description: Output format
+  required:
+    - action

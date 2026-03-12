@@ -1,0 +1,41 @@
+name: slack-notifier
+description: >
+  Sends notifications to Slack channels and DMs for hiring updates, approvals,
+  and escalations. Supports interactive buttons for quick approvals.
+input_schema:
+  type: object
+  properties:
+    action:
+      type: string
+      enum:
+        - send_message
+        - send_dm
+        - send_approval_request
+        - update_message
+      description: Slack notification type
+    channel:
+      type: string
+      description: Slack channel name or ID (e.g., #hiring-updates)
+    user_email:
+      type: string
+      description: User email for DM lookup
+    message:
+      type: string
+      description: Message text (supports Slack markdown)
+    blocks:
+      type: array
+      description: Slack Block Kit blocks for rich formatting
+    approval_type:
+      type: string
+      enum:
+        - offer_approval
+        - budget_exception
+        - requisition_approval
+        - schedule_change
+      description: Type of approval being requested
+    thread_ts:
+      type: string
+      description: Thread timestamp for reply threading
+  required:
+    - action
+    - message
