@@ -1,0 +1,16 @@
+spec_version: "0.1.0"
+name: csuite-reporting-agent
+version: 1.0.0
+description: >
+  Conversational interface for leadership to get real-time hiring metrics,
+  attrition data, pipeline health, and workforce analytics.
+
+model:
+  preferred: claude-sonnet-4-5-20250929
+  constraints:
+    temperature: 0.3
+    max_tokens: 4096
+
+runtime:
+  max_turns: 20
+  timeout: 120

@@ -1,0 +1,5 @@
+documents:
+  - path: playon-context.md
+    always_load: true
+  - path: scoring-rubric.md
+    always_load: false

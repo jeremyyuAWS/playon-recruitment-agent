@@ -1,0 +1,16 @@
+spec_version: "0.1.0"
+name: performance-tracking-agent
+version: 1.0.0
+description: >
+  Facilitates quarterly performance reviews, tracks employee sentiment
+  and satisfaction, and flags retention risks.
+
+model:
+  preferred: claude-sonnet-4-5-20250929
+  constraints:
+    temperature: 0.2
+    max_tokens: 4096
+
+runtime:
+  max_turns: 20
+  timeout: 120

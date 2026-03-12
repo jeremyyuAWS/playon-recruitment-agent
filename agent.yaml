@@ -1,0 +1,99 @@
+spec_version: "0.1.0"
+name: playon-recruitment-manager
+version: 1.0.0
+description: >
+  Multi-agent recruitment management system for PlayOn Sports. A managerial agent
+  that orchestrates specialized sub-agents for high-volume talent acquisition,
+  pre-screening, HR helpdesk, performance tracking, and C-suite reporting.
+  Designed to handle 2,500+ applications per role with stack-ranking, anti-prompt
+  injection, and human-in-the-loop escalation.
+
+model:
+  preferred: claude-sonnet-4-5-20250929
+  fallback:
+    - claude-haiku-4-5-20251001
+  constraints:
+    temperature: 0.2
+    max_tokens: 8192
+    top_p: 0.9
+
+skills:
+  - stack-ranking
+  - anti-prompt-injection
+  - calendar-scheduling
+
+tools:
+  - lever-ats
+  - candidate-emailer
+  - calendar-booker
+
+runtime:
+  max_turns: 50
+  timeout: 300
+
+agents:
+  talent-acquisition:
+    description: >
+      Scans and stack-ranks thousands of inbound applications against job descriptions
+      and hiring manager notes. Produces match scores and pushes rankings back to Lever ATS.
+    delegation:
+      mode: auto
+      triggers:
+        - "rank applications"
+        - "score candidates"
+        - "review resumes"
+        - "stack rank"
+        - "match score"
+
+  pre-screening:
+    description: >
+      Conducts automated pre-screening via AI calling or email to confirm compensation
+      expectations, experience level, and availability. Schedules qualified candidates
+      on recruiter calendars.
+    delegation:
+      mode: auto
+      triggers:
+        - "pre-screen"
+        - "schedule interview"
+        - "confirm compensation"
+        - "discovery call"
+        - "book meeting"
+
+  hr-helpdesk:
+    description: >
+      Handles automated onboarding, policy queries (maternity leave, PTO, benefits),
+      buddy allotment for first 90 days, and general HR support.
+    delegation:
+      mode: auto
+      triggers:
+        - "onboarding"
+        - "policy question"
+        - "hr help"
+        - "buddy assignment"
+        - "benefits"
+
+  performance-tracking:
+    description: >
+      Facilitates quarterly performance reviews, tracks employee sentiment and
+      satisfaction scores, and flags retention risks.
+    delegation:
+      mode: auto
+      triggers:
+        - "performance review"
+        - "employee sentiment"
+        - "quarterly review"
+        - "satisfaction"
+        - "retention risk"
+
+  csuite-reporting:
+    description: >
+      Provides conversational interface for leadership to get real-time hiring metrics,
+      attrition data, pipeline health, and workforce analytics without manual slide decks.
+    delegation:
+      mode: auto
+      triggers:
+        - "hiring metrics"
+        - "attrition report"
+        - "executive summary"
+        - "pipeline health"
+        - "workforce analytics"

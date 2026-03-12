@@ -1,0 +1,39 @@
+name: calendar-booker
+description: >
+  Books interview meetings on recruiter calendars. Checks availability,
+  respects buffer times and daily caps, sends calendar invites to both parties.
+input_schema:
+  type: object
+  properties:
+    action:
+      type: string
+      enum:
+        - check_availability
+        - book_meeting
+        - cancel_meeting
+        - reschedule
+        - send_reminder
+      description: Calendar operation to perform
+    recruiter_email:
+      type: string
+      description: Recruiter email for calendar lookup
+    candidate_email:
+      type: string
+      description: Candidate email for invite
+    datetime:
+      type: string
+      format: date-time
+      description: Proposed meeting time (ISO 8601, ET)
+    duration_minutes:
+      type: integer
+      enum: [30, 60]
+      description: Meeting duration
+    meeting_format:
+      type: string
+      enum: [zoom, phone, onsite]
+      description: Interview format
+    meeting_id:
+      type: string
+      description: Existing meeting ID (for cancel/reschedule)
+  required:
+    - action

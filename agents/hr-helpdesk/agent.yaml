@@ -1,0 +1,16 @@
+spec_version: "0.1.0"
+name: hr-helpdesk-agent
+version: 1.0.0
+description: >
+  Handles automated onboarding workflows, HR policy queries, buddy allotment
+  for the first 90 days, and general employee support.
+
+model:
+  preferred: claude-sonnet-4-5-20250929
+  constraints:
+    temperature: 0.2
+    max_tokens: 4096
+
+runtime:
+  max_turns: 30
+  timeout: 120

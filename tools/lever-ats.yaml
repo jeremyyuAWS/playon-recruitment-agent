@@ -1,0 +1,46 @@
+name: lever-ats
+description: >
+  Two-way integration with Lever ATS. Pulls candidate applications, job descriptions,
+  and hiring manager notes. Pushes stack rankings, match scores, and status updates
+  back to Lever.
+input_schema:
+  type: object
+  properties:
+    action:
+      type: string
+      enum:
+        - pull_applications
+        - pull_job_description
+        - push_rankings
+        - update_candidate_status
+        - pull_hiring_manager_notes
+      description: The ATS operation to perform
+    job_id:
+      type: string
+      description: Lever job posting ID
+    candidate_id:
+      type: string
+      description: Lever candidate ID (for status updates)
+    rankings:
+      type: array
+      description: Array of candidate rankings to push back to Lever
+      items:
+        type: object
+        properties:
+          candidate_id:
+            type: string
+          score:
+            type: number
+          breakdown:
+            type: object
+    status:
+      type: string
+      enum:
+        - new
+        - pre-screened
+        - interview_scheduled
+        - rejected
+        - advanced
+      description: Candidate pipeline status
+  required:
+    - action

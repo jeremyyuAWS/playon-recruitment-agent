@@ -1,0 +1,24 @@
+spec_version: "0.1.0"
+name: pre-screening-agent
+version: 1.0.0
+description: >
+  Conducts automated pre-screening outreach via email to confirm compensation
+  expectations, experience, and availability. Schedules qualified candidates
+  on recruiter calendars.
+
+model:
+  preferred: claude-sonnet-4-5-20250929
+  constraints:
+    temperature: 0.3
+    max_tokens: 4096
+
+skills:
+  - calendar-scheduling
+
+tools:
+  - candidate-emailer
+  - calendar-booker
+
+runtime:
+  max_turns: 20
+  timeout: 180

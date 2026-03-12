@@ -1,0 +1,24 @@
+spec_version: "0.1.0"
+name: talent-acquisition-agent
+version: 1.0.0
+description: >
+  Scans thousands of inbound applications, extracts skills and experience,
+  and stack-ranks candidates against job descriptions and hiring manager notes.
+  Pushes match scores back to Lever ATS via API.
+
+model:
+  preferred: claude-sonnet-4-5-20250929
+  constraints:
+    temperature: 0.1
+    max_tokens: 4096
+
+skills:
+  - stack-ranking
+  - anti-prompt-injection
+
+tools:
+  - lever-ats
+
+runtime:
+  max_turns: 30
+  timeout: 240

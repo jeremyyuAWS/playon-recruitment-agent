@@ -1,0 +1,37 @@
+name: candidate-emailer
+description: >
+  Sends pre-approved email templates to candidates for pre-screening questions,
+  interview scheduling, and follow-ups. All templates require recruiter approval
+  before first use.
+input_schema:
+  type: object
+  properties:
+    action:
+      type: string
+      enum:
+        - send_prescreen
+        - send_schedule_request
+        - send_confirmation
+        - send_followup
+        - send_reminder
+      description: Type of email to send
+    candidate_email:
+      type: string
+      description: Candidate email address
+    candidate_name:
+      type: string
+      description: Candidate full name
+    template_id:
+      type: string
+      description: Pre-approved email template ID
+    template_vars:
+      type: object
+      description: Variables to populate in the template
+    job_title:
+      type: string
+      description: Job title for context
+  required:
+    - action
+    - candidate_email
+    - candidate_name
+    - template_id
