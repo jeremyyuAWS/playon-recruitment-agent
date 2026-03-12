@@ -1,0 +1,73 @@
+name: immigration-tracker
+description: >
+  Tracks visa status, work authorization expiry, H-1B lottery participation,
+  green card processing, and immigration compliance for international hires.
+input_schema:
+  type: object
+  properties:
+    action:
+      type: string
+      enum:
+        - get_visa_status
+        - get_expiring_authorizations
+        - create_case
+        - update_case
+        - get_h1b_lottery_status
+        - get_compliance_report
+        - set_alert
+        - get_employee_eligibility
+      description: Immigration tracking operation
+    employee_id:
+      type: string
+      description: Employee ID
+    case_type:
+      type: string
+      enum:
+        - h1b_initial
+        - h1b_transfer
+        - h1b_extension
+        - l1
+        - o1
+        - tn
+        - green_card_eb2
+        - green_card_eb3
+        - opt
+        - opt_stem
+        - ead
+      description: Visa/immigration case type
+    case_id:
+      type: string
+      description: Existing case ID for updates
+    expiry_window_days:
+      type: integer
+      description: Days ahead to check for expiring authorizations (default 90)
+    case_data:
+      type: object
+      properties:
+        filing_date:
+          type: string
+          format: date
+        attorney:
+          type: string
+        priority_date:
+          type: string
+          format: date
+        expiry_date:
+          type: string
+          format: date
+        status:
+          type: string
+          enum: [pending, approved, denied, rfe, withdrawn]
+        notes:
+          type: string
+      description: Case details for create/update
+    alert_type:
+      type: string
+      enum:
+        - expiry_warning
+        - filing_deadline
+        - rfe_response_due
+        - lottery_result
+      description: Type of alert to set
+  required:
+    - action

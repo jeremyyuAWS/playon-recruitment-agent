@@ -2,11 +2,12 @@ spec_version: "0.1.0"
 name: playon-recruitment-manager
 version: 1.0.0
 description: >
-  Multi-agent recruitment management system for PlayOn Sports. A managerial agent
-  that orchestrates specialized sub-agents for high-volume talent acquisition,
-  pre-screening, HR helpdesk, performance tracking, and C-suite reporting.
-  Designed to handle 2,500+ applications per role with stack-ranking, anti-prompt
-  injection, and human-in-the-loop escalation.
+  Comprehensive multi-agent recruitment and HR management system for PlayOn Sports.
+  A managerial agent orchestrating 6 specialized sub-agents across the full employee
+  lifecycle: talent acquisition, pre-screening, talent operations, HR helpdesk,
+  performance tracking, and C-suite reporting. Handles 2,500+ applications per role
+  with stack-ranking, anti-prompt injection, diversity screening, and human-in-the-loop
+  escalation. Includes 19 skills, 18 tools, 5 hooks, and 3 end-to-end workflows.
 
 model:
   preferred: claude-sonnet-4-5-20250929
@@ -29,6 +30,14 @@ skills:
   - interview-feedback
   - employee-sentiment
   - compliance-reporting
+  - job-description-optimizer
+  - interview-question-generator
+  - requisition-approval
+  - internal-mobility
+  - workforce-planning
+  - offboarding-workflow
+  - skills-gap-analysis
+  - candidate-rediscovery
 
 tools:
   - lever-ats
@@ -41,6 +50,14 @@ tools:
   - analytics-dashboard
   - reference-checker
   - job-board-poster
+  - hris-integration
+  - skills-assessment
+  - ai-caller
+  - video-interview
+  - talent-crm
+  - payroll-connector
+  - lms-integration
+  - immigration-tracker
 
 runtime:
   max_turns: 50
@@ -112,3 +129,20 @@ agents:
         - "executive summary"
         - "pipeline health"
         - "workforce analytics"
+
+  talent-operations:
+    description: >
+      Handles operational recruitment tasks: requisition approvals, job posting,
+      internal mobility, offboarding, immigration tracking, and candidate rediscovery.
+      The glue between hiring and HR workflows.
+    delegation:
+      mode: auto
+      triggers:
+        - "open requisition"
+        - "post job"
+        - "internal transfer"
+        - "offboarding"
+        - "immigration"
+        - "visa"
+        - "rediscover candidates"
+        - "job description"

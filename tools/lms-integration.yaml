@@ -1,0 +1,53 @@
+name: lms-integration
+description: >
+  Integrates with learning management systems to assign, track, and verify
+  required training completion during onboarding and ongoing development.
+input_schema:
+  type: object
+  properties:
+    action:
+      type: string
+      enum:
+        - assign_training
+        - get_completion_status
+        - get_overdue_training
+        - get_training_catalog
+        - create_learning_path
+        - get_team_compliance
+        - send_reminder
+      description: LMS operation
+    employee_id:
+      type: string
+      description: Employee ID
+    employee_email:
+      type: string
+      description: Employee email for assignment
+    course_ids:
+      type: array
+      items:
+        type: string
+      description: Course IDs to assign
+    learning_path_id:
+      type: string
+      description: Pre-built learning path ID
+    role_type:
+      type: string
+      description: Role type for auto-assigning relevant courses
+    department:
+      type: string
+      description: Department for team compliance queries
+    due_date:
+      type: string
+      format: date
+      description: Training completion deadline
+    training_type:
+      type: string
+      enum:
+        - onboarding_required
+        - compliance_required
+        - role_specific
+        - professional_development
+        - manager_training
+      description: Category of training
+  required:
+    - action

@@ -1,0 +1,59 @@
+name: ai-caller
+description: >
+  AI-powered voice calling for candidate pre-screening. Conducts structured
+  discovery calls to confirm compensation, experience, availability, and interest.
+  Records calls and generates transcripts.
+input_schema:
+  type: object
+  properties:
+    action:
+      type: string
+      enum:
+        - initiate_call
+        - schedule_call
+        - get_transcript
+        - get_call_status
+        - get_call_summary
+        - cancel_call
+      description: Calling operation
+    candidate_phone:
+      type: string
+      description: Candidate phone number (E.164 format)
+    candidate_name:
+      type: string
+      description: Candidate full name
+    candidate_id:
+      type: string
+      description: Lever candidate ID
+    call_type:
+      type: string
+      enum:
+        - discovery_screen
+        - compensation_check
+        - availability_check
+        - interest_confirmation
+        - offer_follow_up
+      description: Type of call to conduct
+    script_id:
+      type: string
+      description: Pre-approved call script template ID
+    scheduled_time:
+      type: string
+      format: date-time
+      description: Scheduled call time (ISO 8601, ET)
+    role_title:
+      type: string
+      description: Job title for context in the conversation
+    key_questions:
+      type: array
+      items:
+        type: string
+      description: Specific questions to ask beyond the standard script
+    call_id:
+      type: string
+      description: Existing call ID for transcript/status queries
+    max_duration_minutes:
+      type: integer
+      description: Maximum call duration (default 15)
+  required:
+    - action

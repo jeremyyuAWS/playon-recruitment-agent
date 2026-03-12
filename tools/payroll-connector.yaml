@@ -1,0 +1,61 @@
+name: payroll-connector
+description: >
+  Connects to payroll systems (ADP, Gusto, Rippling) for offer-to-hire
+  handoff. Syncs compensation data, tax forms, and direct deposit setup.
+input_schema:
+  type: object
+  properties:
+    action:
+      type: string
+      enum:
+        - create_payroll_record
+        - get_compensation_data
+        - update_compensation
+        - get_tax_form_status
+        - initiate_direct_deposit
+        - get_pay_schedule
+        - get_benefits_enrollment_status
+      description: Payroll operation
+    employee_id:
+      type: string
+      description: Employee ID in payroll system
+    new_hire_data:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        ssn_last_four:
+          type: string
+        start_date:
+          type: string
+          format: date
+        base_salary:
+          type: number
+        pay_frequency:
+          type: string
+          enum: [weekly, biweekly, semimonthly, monthly]
+        bonus_structure:
+          type: object
+        equity:
+          type: object
+        department:
+          type: string
+        cost_center:
+          type: string
+      description: New hire payroll data (from signed offer)
+    compensation_change:
+      type: object
+      properties:
+        new_base:
+          type: number
+        effective_date:
+          type: string
+          format: date
+        reason:
+          type: string
+          enum: [promotion, merit_increase, market_adjustment, role_change]
+      description: Compensation update details
+  required:
+    - action

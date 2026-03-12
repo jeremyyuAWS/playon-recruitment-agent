@@ -1,0 +1,83 @@
+name: talent-crm
+description: >
+  Manages passive candidate relationships over time. Tracks engagement,
+  nurture sequences, talent pool segmentation, and re-engagement campaigns.
+input_schema:
+  type: object
+  properties:
+    action:
+      type: string
+      enum:
+        - add_to_pool
+        - get_candidate_profile
+        - search_pool
+        - start_nurture_sequence
+        - pause_nurture
+        - log_interaction
+        - get_engagement_score
+        - create_campaign
+        - get_pool_analytics
+        - match_pool_to_role
+      description: CRM operation
+    candidate_id:
+      type: string
+      description: Candidate ID
+    candidate_data:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+        current_title:
+          type: string
+        current_company:
+          type: string
+        skills:
+          type: array
+          items:
+            type: string
+        source:
+          type: string
+        notes:
+          type: string
+      description: Candidate profile data
+    pool_name:
+      type: string
+      description: Talent pool segment (e.g., "senior-engineers", "product-managers")
+    sequence_id:
+      type: string
+      description: Nurture sequence template ID
+    interaction:
+      type: object
+      properties:
+        type:
+          type: string
+          enum: [email_sent, email_opened, email_replied, call, meeting, event, referral]
+        notes:
+          type: string
+        date:
+          type: string
+          format: date
+      description: Interaction to log
+    job_id:
+      type: string
+      description: Job ID to match against pool
+    search_filters:
+      type: object
+      properties:
+        skills:
+          type: array
+          items:
+            type: string
+        min_experience_years:
+          type: integer
+        location:
+          type: string
+        engagement_score_min:
+          type: number
+      description: Filters for pool search
+  required:
+    - action

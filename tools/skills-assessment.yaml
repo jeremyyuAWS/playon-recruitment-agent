@@ -1,0 +1,66 @@
+name: skills-assessment
+description: >
+  Integrates with technical assessment platforms (HackerRank, Codility, CodeSignal)
+  to send coding challenges, track completion, and retrieve scores.
+input_schema:
+  type: object
+  properties:
+    action:
+      type: string
+      enum:
+        - send_assessment
+        - check_status
+        - get_results
+        - get_assessment_library
+        - create_custom_assessment
+        - send_reminder
+        - expire_assessment
+      description: Assessment operation
+    platform:
+      type: string
+      enum:
+        - hackerrank
+        - codility
+        - codesignal
+      description: Assessment platform
+    candidate_email:
+      type: string
+      description: Candidate email address
+    candidate_name:
+      type: string
+      description: Candidate full name
+    assessment_id:
+      type: string
+      description: Assessment template or instance ID
+    role_type:
+      type: string
+      enum:
+        - frontend
+        - backend
+        - fullstack
+        - devops
+        - data_engineering
+        - mobile
+        - qa
+      description: Role type to match assessment difficulty and language
+    difficulty:
+      type: string
+      enum:
+        - junior
+        - mid
+        - senior
+        - staff
+      description: Expected seniority level
+    time_limit_minutes:
+      type: integer
+      description: Time limit for the assessment (default 90)
+    languages:
+      type: array
+      items:
+        type: string
+      description: Allowed programming languages
+    deadline_hours:
+      type: integer
+      description: Hours until assessment link expires (default 72)
+  required:
+    - action

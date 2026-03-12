@@ -1,5 +1,15 @@
 documents:
   - path: playon-context.md
     always_load: true
+  - path: hiring-sla.md
+    always_load: true
   - path: scoring-rubric.md
+    always_load: false
+  - path: interview-question-bank.md
+    always_load: false
+  - path: benefits-guide.md
+    always_load: false
+  - path: employee-handbook.md
+    always_load: false
+  - path: compensation-bands.md
     always_load: false

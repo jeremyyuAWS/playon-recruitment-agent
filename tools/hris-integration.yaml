@@ -1,0 +1,68 @@
+name: hris-integration
+description: >
+  Connects to HRIS platforms (Workday, BambooHR, ADP) for employee data,
+  org charts, headcount, and employee lifecycle management.
+input_schema:
+  type: object
+  properties:
+    action:
+      type: string
+      enum:
+        - get_employee
+        - search_employees
+        - get_org_chart
+        - get_headcount
+        - get_department_roster
+        - create_employee_record
+        - update_employee_status
+        - get_turnover_data
+        - get_open_positions
+      description: HRIS operation to perform
+    employee_id:
+      type: string
+      description: Employee ID for lookup
+    department:
+      type: string
+      description: Department filter
+    search_query:
+      type: string
+      description: Search term (name, title, skills)
+    status_filter:
+      type: string
+      enum:
+        - active
+        - on_leave
+        - terminated
+        - all
+      description: Employee status filter
+    date_range:
+      type: object
+      properties:
+        start:
+          type: string
+          format: date
+        end:
+          type: string
+          format: date
+      description: Date range for turnover/headcount queries
+    new_hire_data:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        title:
+          type: string
+        department:
+          type: string
+        start_date:
+          type: string
+          format: date
+        manager_id:
+          type: string
+        compensation:
+          type: object
+      description: Data for creating a new employee record
+  required:
+    - action
